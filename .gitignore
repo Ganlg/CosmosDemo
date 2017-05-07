@@ -1,0 +1,11 @@
+*.pyc
+*~
+__pycache__
+myvenv
+db.sqlite3
+/static
+.DS_Store
+.idea
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py

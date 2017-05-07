@@ -1,0 +1,80 @@
+<!DOCTYPE html> {% load static %}
+<html lang="en">
+
+<head>
+  <title>{% block title %}Cosmos Analytics Online Demo{% endblock %}</title>
+  {% include 'base-header.html' %}
+  <!--  <script src="https://d3js.org/d3.v4.min.js"></script>-->
+  <script src="{% static 'js/echarts.js' %}"></script>
+  <script src="{% static 'js/chosen.jquery.min.js' %}"></script>
+
+  <link type="text/css" rel="stylesheet" href="{% static 'demo/css/demo.css' %}">
+  <link type="text/css" rel="stylesheet" href="{% static 'css/chosen.min.css' %}">
+
+</head>
+
+<body class="bg-grey">
+
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#"><img id='logo' src="{% static 'img/logo.png' %}"></a>
+      </div>
+    </div>
+  </nav>
+
+  <div class='container text-center'>
+    <div>
+      <h2>Online Demo</h2>
+      <div id='search-box'>
+        <form class="form-inline" id="search-text" method="post">
+          {% csrf_token %}
+          <input type="hidden" value="{% url 'demo:product_hint' %}" name="product_hint">
+          <input type="hidden" value="{% url 'demo:product_found' %}" name="product_found">
+          <input type="hidden" value="{% url 'demo:product_rank' %}" name="product_rank">
+          <input type="text" class="form-control" size="80" placeholder="Search the makeup of interest" name="text" maxlength="150" required>
+          <button type="button" class="btn btn-success">Search</button>
+        </form>
+        <div id='search_hint'>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class='container report'>
+    <div class='title' id='report_title'></div>
+    <div id='score_for_each_attribute' class='dashboard' style="width: 100%;height:400px;"></div>
+    <div class='row'>
+      <div id='vote_for_skin_type' class='dashboard col-xs-12 col-sm-6' style="height:400px;"></div>
+      <div id='vote_for_texture' class='dashboard col-xs-12 col-sm-6' style="height:400px;"></div>
+    </div>
+    <div id="rank_attribute" class='dashboard'></div>
+    <!--    <div id='price_rank_chart' class='dashboard' style="width: 100%;height:400px;"></div>-->
+
+  </div>
+
+  <div class='container report comparison'>
+
+    <form class="form-inline" id="product_comparison" method="post">
+      {% csrf_token %}
+
+      <input type="hidden" value="{% url 'demo:product_comparison' %}" name="product_comparison">
+      <div class='col-xs-10' id='product_for_comparison'>
+      </div>
+      <button type="button" class="btn btn-success">Compare</button>
+    </form>
+
+    <div id='attribute_comparison' class='dashboard' style="width: 100%;height:400px;"></div>
+
+
+  </div>
+
+  <div class="footer">
+  </div>
+
+
+
+  <script src="{% static 'demo/js/demo.js' %}"></script>
+
+</body>
