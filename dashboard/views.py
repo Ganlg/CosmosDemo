@@ -12,7 +12,7 @@ from .forms import MessageForm
 from .models import ProductInfoRating, ProductInfoRatingRank, Brand, ProductNav, CategoryReviewNum
 # Create your views here.
 def index(request):
-    return render(request, 'demo/demo.html')
+    return render(request, 'dashboard/dashboard.html')
 
 @ajax_required
 @require_POST
@@ -32,18 +32,6 @@ def product_hint(request):
         result = result.values('product_id', 'product_name', 'num')[:6]
         return JsonResponse({'result': list(result)}, safe=False)
     return JsonResponse([], safe=False)
-
-# @ajax_required
-# @require_POST
-# def product_search(request):
-#     form = MessageForm(request.POST)
-#     if form.is_valid():
-#         text = form.cleaned_data['text']
-#         query_sets = ProductInfoRating.objects.values('product_id', 'product_name', 'num').all()
-#         result = fuzzyfinder(text, query_sets, 'product_name')
-#         # result = ProductInfoRating.objects.filter(product_name__icontains=text).values('product_id', 'product_name', 'num')[:5]
-#         return JsonResponse({'result': list(result)}, safe=False)
-#     return JsonResponse([], safe=False)
 
 
 @ajax_required
@@ -172,7 +160,3 @@ def fuzzyfinder(user_input, collection, name):
             break
         count += 1
     return result
-
-
-def test(request):
-    return render(request, 'demo/test.html')

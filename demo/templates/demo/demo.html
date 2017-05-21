@@ -22,9 +22,8 @@
       </div>
     </div>
   </nav>
-
-  <div class='container text-center'>
-    <div>
+  <div class='container'>
+    <div class='text-center'>
       <h2>Online Demo</h2>
       <div id='search-box'>
         <form class="form-inline" id="search-text" method="post">
@@ -32,10 +31,38 @@
           <input type="hidden" value="{% url 'demo:product_hint' %}" name="product_hint">
           <input type="hidden" value="{% url 'demo:product_found' %}" name="product_found">
           <input type="hidden" value="{% url 'demo:product_rank' %}" name="product_rank">
+          <input type="hidden" value="{% url 'demo:brand_info' %}" name="brand_info">
+          <input type="hidden" value="{% url 'demo:product_nav' %}" name="product_nav">
+          <input type="hidden" value="{% url 'demo:product_popularity' %}" name="product_popularity">
           <input type="text" class="form-control" size="80" placeholder="Search the makeup of interest" name="text" maxlength="150" required>
-          <button type="button" class="btn btn-success">Search</button>
+          <!--          <button type="button" class="btn btn-success">Search</button>-->
         </form>
         <div id='search_hint'>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" id='product_nav'>
+      <div class='product_nav_item col-xs-12 '>
+        <div class='col-xs-2 col-md-1'><span class='label label-info '>Brand</span></div>
+        <div class='col-xs-10 col-md-11' id='brand_list'></div>
+      </div>
+
+      <div class='product_nav_item col-xs-12 '>
+        <div class='col-xs-2 col-md-1'><span class='label label-info '>Category</span></div>
+        <div class='col-xs-10 col-md-11' id='category_list'>
+          <select data-placeholder="Choose a Category..." class="chosen-select" tabindex="2">
+            <option value=""></option>
+          </select>
+        </div>
+      </div>
+
+      <div class='product_nav_item col-xs-12 '>
+        <div class='col-xs-2 col-md-1'><span class='label label-info '>Product</span></div>
+        <div class='col-xs-10 col-md-11' id='product_list'>
+          <select data-placeholder="Choose a Product..." class="chosen-select" tabindex="2">
+            <option value=""></option>
+          </select>
         </div>
       </div>
     </div>
@@ -51,6 +78,11 @@
     </div>
     <div id="rank_attribute" class='dashboard'></div>
     <!--    <div id='price_rank_chart' class='dashboard' style="width: 100%;height:400px;"></div>-->
+
+
+    <!--    <div id="brand_force" class='dashboard' style="height:800px;"></div>-->
+    <div id="brand_relation" class='dashboard' style="height:800px;"></div>
+    <div id='popularity_by_category' class='dashboard' style='height:500px;'></div>
 
   </div>
 
