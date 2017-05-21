@@ -1,0 +1,89 @@
+
+body {
+  font: 400 15px Lato, sans-serif;
+  line-height: 1.8;
+  color: #000;
+}
+h2 {
+  font-size: 24px;
+  text-transform: uppercase;
+  color: #303030;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+h4 {
+  font-size: 19px;
+  line-height: 1.375em;
+  color: #303030;
+  font-weight: 400;
+  margin-bottom: 30px;
+}
+
+.container-fluid {
+  padding: 60px 50px;
+}
+.navbar {
+  background-color: #80b3ff;
+  z-index: 9999;
+  border: 0;
+  font-size: 16px !important;
+  letter-spacing: 4px;
+  border-radius: 0;
+}
+.navbar li a, .navbar .navbar-brand {
+  color: #fff !important;
+}
+.navbar-nav li a:hover, .navbar-nav li.active a {
+  color: #80b3ff !important;
+  background-color: #fff !important;
+}
+.navbar-default .navbar-toggle {
+  border-color: transparent;
+  color: #fff !important;
+}
+
+
+.icon-small {
+  color: #80b3ff;
+  font-size: 50px;
+}
+.icon {
+  color: #80b3ff;
+  font-size: 250px;
+}
+.bg-grey {
+  background-color: #f6f6f6;
+}
+
+@media screen and  (max-width: 760px) {
+  .col-sm-4 {
+    text-align: center;
+    margin: 25px 0;
+  }
+  .btn-lg {
+      width: 100%;
+      margin-bottom: 35px;
+  }
+}
+@media screen and  (max-width: 480px) {
+  .icon {
+      font-size: 150px;
+  }
+}
+
+/*
+#logo {
+  max-width: 100px;
+  margin-top: -7px;
+  
+}
+*/
+.navbar-brand {
+/*  padding: 0px;  firefox bug fix */
+}
+.navbar-brand>img {
+  height: 100%;
+/*  padding: 15px;  firefox bug fix */
+  width: auto;
+}
+  
