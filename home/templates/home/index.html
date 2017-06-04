@@ -1,17 +1,29 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  {% load static %}
-  <title>CosmosAnalytics</title>
-  <meta name="keywords" content="cosmosanalytics, sentiment, consulting, analysis, etc.">
-  <meta name="description" content="Cosmos Analytics is the world's leading analytics technology company that provides the most advanced analysis for major brand marketers.">
 
-  {% include 'base-header.html' %}
-  <link type="text/css" rel="stylesheet" href="{% static 'home/css/index.css' %}">
+  <title>Tekk Brand</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="tekkbrand, tekk, marketing, consulting, analysis, etc.">
+  <meta name="description" content="Tekk Brand is the world's leading analytics technology company that provides the most advanced analysis for major brand marketers.">
+
+
+  <link rel="stylesheet" href="{% static 'dist/bootstrap/css/bootstrap.min.css' %}">
+  <link href="{% static 'home/css/index.css' %}" rel="stylesheet" type="text/css">
+
+  <script src="{% static 'dist/jquery/js/jquery-3.1.1.min.js' %}"></script>
+  <script src="{% static 'dist/bootstrap/js/bootstrap.min.js'%}"></script>
+
+  <script src="{% static 'dist/echarts/js/echarts.js' %}"></script>
+  <script src="{% static 'dist/echarts/js/macarons.js' %}"></script>
+
+
 </head>
 
-<body id="myPage">
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
@@ -20,220 +32,388 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#myPage"><img id='logo' src="{% static 'img/logo.png' %}"></a>
+        <a class="navbar-brand brand-logo" href="#myPage">Tekk Brand</a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#company">Company</a></li>
-          <li><a href="#product">Product</a></li>
-          <li><a href="#careers">Careers</a></li>
-          <li><a href="{% url 'dashboard:index' %}">Dashboard</a></li>
-          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="#about"><strong>ABOUT</strong></a></li>
+          <li><a href="#services"><strong>SERVICE</strong></a></li>
+          <li><a href="#contact"><strong>CONTACT</strong></a></li>
+          <li><a href="{% url 'dashboard:index'%}"><strong>DEMO</strong></a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <div class="jumbotron text-center">
-    <h1>Cosmos Analytics</h1>
-    <p>We Secialize in Marketing Analytics, Data Analytics and Modeling</p>
-    <form class="form-inline">
-      <input type="email" class="form-control" size="50" placeholder="Your Email" required>
-      <button type="button" class="btn btn-danger">Subscribe</button>
-    </form>
+  <div class="video_wrapper">
+
+    <div class="jumbotron text-center">
+      <h1>Tekk Brand</h1>
+      <p>We Specialize in Marketing Analytics, Data Analytics and Modeling</p>
+      <p><strong>We want to make your business thrive!</strong></p>
+
+    </div>
+
+    <div class='video_content'>
+      <video id="home_video" preload="auto" loop="" autoplay="" muted="">
+        <source type="video/mp4" src="{% static 'dist/video/tekk.mp4' %}">
+      </video>
+    </div>
   </div>
+
 
 
   <!-- Container (About Section) -->
-  <div id="company" class="container-fluid">
+  <div id="about" class="container-fluid">
     <div class="row">
-
-      <div class="col-sm-4 col-sm-push-8 slideanim">
-        <span class="fa fa-line-chart icon" aria-hidden="true"></span>
-      </div>
-      <div class="col-sm-8 col-sm-pull-4">
+      <div class="col-sm-8">
         <h2>About Our Company</h2>
         <br>
-        <h4>Cosmos Analytics is the world's leading analytics technology company that provides the most advanced analysis for major brand marketers. With our strong machine learning technology support, we will provide you with a 360 degree analysis for your brand, products, and competitors to help you improve brand reputation, customers' experiences and competitive strength.</h4>
-        <!--        <br><button class="btn btn-default btn-lg">Get in Touch</button>-->
+        <h4>Tekk Brand is the world's leading analytics technology company that provides the most advanced analysis for major brand marketers. With our strong machine learning technology support, we will provide you with a 360 degree analysis for your brand, products, and competitors to help you improve brand reputation, customers' experiences and competitive strength.</h4>
+      </div>
+      <div class="col-sm-4">
+        <span class="glyphicon glyphicon-globe logo slideanim"></span>
       </div>
     </div>
   </div>
-
 
   <div class="container-fluid bg-grey">
     <div class="row">
-      <div class="col-sm-4 slideanim">
-        <span class="glyphicon glyphicon-globe icon"></span>
+      <div class="col-sm-4">
+        <span class="glyphicon glyphicon-signal logo slideanim"></span>
       </div>
       <div class="col-sm-8">
-        <h2>Product</h2>
+        <h2>Our Values</h2>
         <br>
-        <h4>Do you want to know how and why people like or dislike your products?</h4>
-        <h4>Do you want to know how to improve your products?</h4>
-        <h4>Do you want to know what your competitive advantages are?</h4>
-        <h4>Do you want to win a bigger market share?</h4>
-        <h4>Do you want to ultimately boost your revenue?</h4>
-        <h4>If you answer is yes, our Cosmos ONE cloud-based platform will tell you these vital secrets to tremendously enhance your business strategies and grow your sales.</h4>
+        <h4><strong>MISSION:</strong> We want to make your business thrive!</h4>
+        <br>
+        <p><strong>VISION:</strong> We are a group of people who are enthusiastic about marketing and technology. We are dedicated to apply the most advanced machine-learning algorithm to help marketers improve products performance, brand reputation, customers’ experiences and competitive strength. Ultimately, we help you create a stronger and wealthier company.</p>
       </div>
     </div>
   </div>
 
+  <div id="technology" class="container-fluid text-center">
+    <h2>Technology</h2>
+    <h4>How does it work</h4>
+    <br>
+    <div class="row slideanim">
+      <div class="col-sm-4">
+        <img src="{% static 'dist/img/computer.png' %}" class="img-small">
+        <h4>Internet</h4>
+        <p>We apply cloud based big data technology to collect your customers’ voices from the Internet</p>
+      </div>
+      <div class="col-sm-4">
+        <img src="{% static 'dist/img/robot.png' %}" class="img-small">
+        <h4>Algorithm</h4>
+        <p>We use artificial intelligence learning and neural networking algorithm to read these voices. </p>
+      </div>
+      <div class="col-sm-4">
+        <img src="{%static 'dist/img/excel.png' %}" class="img-small">
+        <h4>Conclusion</h4>
+        <p>We deep dive into the results and come up with actionable insights.</p>
+      </div>
+    </div>
+  </div>
 
   <!-- Container (Services Section) -->
-  <div id="services" class="container-fluid text-center slideanim">
-    <h2>Services</h2>
-    <h4>What we offer</h4>
+  <div id="services" class="container-fluid text-center bg-grey">
+    <h2>Service</h2>
+    <h4>Through our deep learning technology platform and research services, we can help you</h4>
     <br>
-    <div class="row">
-      <div class="col-sm-4">
-        <span class="glyphicon glyphicon-off icon-small"></span>
-        <h4>Power</h4>
-        <p>Lorem ipsum dolor sit amet..</p>
-      </div>
-      <div class="col-sm-4">
-        <span class="glyphicon glyphicon-heart icon-small"></span>
-        <h4>LOVE</h4>
-        <p>Lorem ipsum dolor sit amet..</p>
-      </div>
-      <div class="col-sm-4">
-        <span class="glyphicon glyphicon-lock icon-small"></span>
-        <h4>JOB DONE</h4>
-        <p>Lorem ipsum dolor sit amet..</p>
-      </div>
-    </div>
-    <br>
-    <br>
-    <div class="row">
-      <div class="col-sm-4">
-        <span class="glyphicon glyphicon-leaf icon-small"></span>
-        <h4>GREEN</h4>
-        <p>Lorem ipsum dolor sit amet..</p>
-      </div>
-      <div class="col-sm-4">
-        <span class="glyphicon glyphicon-certificate icon-small"></span>
-        <h4>CERTIFIED</h4>
-        <p>Lorem ipsum dolor sit amet..</p>
-      </div>
-      <div class="col-sm-4">
-        <span class="glyphicon glyphicon-wrench icon-small"></span>
-        <h4 style="color:#303030;">HARD WORK</h4>
-        <p>Lorem ipsum dolor sit amet..</p>
-      </div>
-    </div>
-  </div>
-  <!-- Container (Portfolio Section) -->
-  <div id="portfolio" class="container-fluid text-center bg-grey">
-    <h2>Portfolio</h2>
-    <br>
-    <h4>What we have created</h4>
-    <div class="row text-center slideanim">
-      <div class="col-sm-4">
-        <div class="thumbnail">
-          <!--          <img src="paris.jpg" alt="Paris" width="400" height="300">-->
-          <p><strong>Paris</strong></p>
-          <p>Yes, we built Paris</p>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="thumbnail">
-          <!--          <img src="newyork.jpg" alt="New York" width="400" height="300">-->
-          <p><strong>New York</strong></p>
-          <p>We built New York</p>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="thumbnail">
-          <!--          <img src="sanfran.jpg" alt="San Francisco" width="400" height="300">-->
-          <p><strong>San Francisco</strong></p>
-          <p>Yes, San Fran is ours</p>
+    <div class="row slideanim">
+      <div class="col-sm-12">
+        <div class="panel panel-primary">
+          <div class="panel-heading"><strong>UNDERSTAND</strong> your customers and competitive advantages </div>
+          <div class="panel-body">
+            <div>
+              <div class='col-md-6'>
+                <p class="text-center">
+                  <strong>Product Comparison</strong>
+                </p>
+                <div class="chart">
+                  <div id='example-radar-chart' style="height: 280px"></div>
+                </div>
+
+                <p class='comment text-left'><strong>Comment:</strong> Product 1 has lower scores in terms of smell and packaging, while relatively higher score in price, which means custoemrs are happy with the price but not with the smell and packaging for product 1. </p>
+                <p class='comment text-left'><strong>Suggestion:</strong> Change the smell of product 1, pay more attention to the packaging, keep the price the same or increase it a little bit, so as to make the product more competitive!</p>
+              </div>
+
+              <div class='col-md-6'>
+                <p class="text-center">
+                  <strong>Votes for Skin Type</strong>
+                </p>
+                <div class="chart">
+                  <div id='example-pie-chart' style="height: 280px"></div>
+                </div>
+
+                <p class='comment text-left'><strong>Comment:</strong> Customers feel that this product is more suitable for users with dry, normal or combination skin type</p>
+                <p class='comment text-left'><strong>Suggestion:</strong> Try to find out why this product is not that good for users with oil skin, if they are originally selected as target custoemrs. If only dry or normal skin users are your target customers, sit back, relax and enjoy a cup of coffee!</p>
+              </div>
+
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <br>
 
-    <h2>What our customers say</h2>
-    <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-      </ol>
+    <div class="row slideanim">
+      <div class="col-sm-12">
+        <div class="panel panel-primary">
+          <div class="panel-heading"><strong>LISTEN</strong> to your customers’ feedbacks </div>
+          <div class="panel-body">
+            <div class='col-md-6'>
+              <img class='img100' src="{% static 'dist/img/tweet.png'%}">
+            </div>
 
-      <!-- Wrapper for slides -->
-      <div class="carousel-inner" role="listbox">
-        <div class="item active">
-          <h4>"This company is the best. I am so happy with the result!"<br><span style="font-style:normal;">Michael Roe, Vice President, Comment Box</span></h4>
+            <div class='col-md-6'>
+              <img class='img100' src="{% static 'dist/img/review.png'%}">
+            </div>
+            <p class='comment text-left'><strong>Comment:</strong> We collect customers' tweets, reviews, and so on, of your product of interest. Collect from the interent, store locally, process by our state of art machine learning models, and finally, present the valuable insights to you.</p>
+          </div>
         </div>
-        <div class="item">
-          <h4>"One word... WOW!!"<br><span style="font-style:normal;">John Doe, Salesman, Rep Inc</span></h4>
-        </div>
-        <div class="item">
-          <h4>"Could I... BE any more happy with this company?"<br><span style="font-style:normal;">Chandler Bing, Actor, FriendsAlot</span></h4>
+
+      </div>
+    </div>
+
+    <div class="row slideanim">
+      <div class="col-sm-12">
+        <div class="panel panel-primary">
+          <div class="panel-heading"><strong>IMPROVE</strong> your products and customers’ experiences</div>
+          <div class="panel-body">
+            <div class='col-md-12'>
+              <p class="text-center">
+                <strong>Product's Rank within Foundation</strong>
+              </p>
+              <div>
+                <table class="table table-bordered">
+                  <tbody>
+                    <tr class="row">
+                      <th class="col-xs-3"></th>
+                      <th class="col-xs-1 text-center">Price</th>
+                      <th class="col-xs-1 text-center">Smell</th>
+                      <th class="col-xs-1 text-center">Effect</th>
+                      <th class="col-xs-2 text-center">Packaging</th>
+                      <th class="col-xs-2 text-center">Pure Emotion</th>
+                      <th class="col-xs-1 text-center">Retention</th>
+                      <th class="col-xs-1 text-center">Other</th>
+                    </tr>
+                    <tr class="row color-top20">
+                      <th class="text-center">Well Above Average
+                        <br>(top 20%)</th>
+                      <td class="text-center"></td>
+                      <td class="text-center"><span class="glyphicon glyphicon-ok"></span></td>
+                      <td class="text-center"></td>
+                      <td class="text-center"><span class="glyphicon glyphicon-ok"></span></td>
+                      <td class="text-center"></td>
+                      <td class="text-center"></td>
+                      <td class="text-center"></td>
+                    </tr>
+                    <tr class="row color-top40">
+                      <th class="text-center">Above Average
+                        <br>(top 40%)</th>
+                      <td class="text-center"></td>
+                      <td class="text-center"></td>
+                      <td class="text-center"><span class="glyphicon glyphicon-ok"></span></td>
+                      <td class="text-center"></td>
+                      <td class="text-center"><span class="glyphicon glyphicon-ok"></span></td>
+                      <td class="text-center"><span class="glyphicon glyphicon-ok"></span></td>
+                      <td class="text-center"></td>
+                    </tr>
+                    <tr class="row color-avg">
+                      <th class="text-center">Average
+                        <br>(40% ~ 60%)</th>
+                      <td class="text-center"></td>
+                      <td class="text-center"></td>
+                      <td class="text-center"></td>
+                      <td class="text-center"></td>
+                      <td class="text-center"></td>
+                      <td class="text-center"></td>
+                      <td class="text-center"><span class="glyphicon glyphicon-ok"></span></td>
+                    </tr>
+                    <tr class="row color-bot40">
+                      <th class="text-center">Below Average
+                        <br>(Bottom 40%)</th>
+                      <td class="text-center"><span class="glyphicon glyphicon-ok"></span></td>
+                      <td class="text-center"></td>
+                      <td class="text-center"></td>
+                      <td class="text-center"></td>
+                      <td class="text-center"></td>
+                      <td class="text-center"></td>
+                      <td class="text-center"></td>
+                    </tr>
+                    <tr class="row color-bot20">
+                      <th class="text-center">Well Below Average
+                        <br>(Bottom 20%)</th>
+                      <td class="text-center"></td>
+                      <td class="text-center"></td>
+                      <td class="text-center"></td>
+                      <td class="text-center"></td>
+                      <td class="text-center"></td>
+                      <td class="text-center"></td>
+                      <td class="text-center"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <p class='comment text-left'><strong>Comment:</strong> It looks like that this product is a little bit pricy among all foundations. It smells good. Customers feel the effect. They are happy with the packaging. Customers compliment this product more than other products. They also show their willingness to buy the product again in the future. The other part is around the average, we need to investigate more to find out more insights.</p>
+
+              <p class='comment text-left'><strong>Suggestion:</strong> Check your margin of this product, if it's profitable enough, why not reduce the price to attract and retain more customers.</p>
+            </div>
+          </div>
+
         </div>
       </div>
-
-      <!-- Left and right controls -->
-      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
     </div>
-  </div>
+
+    <div class="row slideanim">
+      <div class="col-sm-12">
+        <div class="panel panel-primary">
+          <div class="panel-heading"><strong>MONITOR</strong> your brand health</div>
+          <div class="panel-body">
+            <div>
+              <div class="alert alert-danger text-left">
+                <strong>Alter!</strong> it claims to be for the whole body and hair but it needed a lot to wash the hair and not very economical.
+              </div>
+              <div class="alert alert-warning text-left">
+                <strong>Warning!</strong> It does make my skin clean and soft, but when I used it to shave I got a nice rash that took a few weeks to clear (good thing I only used it on my legs...).
+              </div>
+              <div class="alert alert-success text-left">
+                <strong>Good!</strong> This soap leaves my skin squeaky clean and smooth without dryout out my skin after rinsing off.
+              </div>
+              <div class="alert alert-success text-left">
+                <strong>Good!</strong> This soap made my skin soft and I had no reaction to it like I do to many soaps.
+              </div>
+
+            </div>
+            <div class="row">
+              <div class='col-md-6'>
+                <div class="panel panel-success">
+                  <div class="panel-heading">Positive Feedback Summary</div>
+                  <div class="panel-body">
+                    <ul class="list-group">
+                      <li class="list-group-item">feel squeaky clean <span class="glyphicon glyphicon-ok good"></span> </li>
+                      <li class="list-group-item">leaves skin soft <span class="glyphicon glyphicon-ok good"></span> </li>
+                      <li class="list-group-item">super moisturizing <span class="glyphicon glyphicon-ok good"></span> </li>
+                      <li class="list-group-item">...</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class='col-md-6'>
+
+                <div class="panel panel-danger">
+                  <div class="panel-heading">Negative Feedback Summary</div>
+                  <div class="panel-body">
+                    <ul class="list-group">
+                      <li class="list-group-item">worse than the olive lavender soap <span class="glyphicon glyphicon-remove bad"></span> </li>
+                      <li class="list-group-item">suffer red bumps <span class="glyphicon glyphicon-remove bad"></span></li>
+                      <li class="list-group-item">doesn't feel luxurious <span class="glyphicon glyphicon-remove bad"></span></li>
+                      <li class="list-group-item">...</li>
+                    </ul>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+            <p class='comment text-left'><strong>Comment:</strong> Based on customers' reviews, we analyze that whether they agree that your products are effective. If not, then not good. You probably need to do more to make your product more effective.</p>
+          </div>
+        </div>
 
 
-  <!-- Container (Pricing Section) -->
-  <div id="pricing" class="container-fluid">
-    <div class="text-center">
-      <h2>Pricing</h2>
-      <h4>Best price for your company</h4>
+      </div>
+    </div>
+
+    <div class="row slideanim">
+      <div class="col-sm-12">
+        <div class="panel panel-primary">
+          <div class="panel-heading"><strong>KEEP</strong> track of the industry trend.</div>
+          <div class="panel-body">
+            <div class='col-md-12'>
+              <p class="text-center">
+                <strong>Skin Care Trends on Social Media</strong>
+              </p>
+              <div class="chart">
+                <div id='example-polar-chart' style="height: 280px"></div>
+              </div>
+              <p class='comment text-left'><strong>Comment:</strong> Identify customers' trends on social media. Always be ready!</p>
+            </div>
+            
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 
   <!-- Container (Contact Section) -->
-  <div id="contact" class="container-fluid bg-grey">
-    <h2 class="text-center">Contact</h2>
+  <div id="contact" class="container-fluid">
+    <h2 class="text-center">CONTACT</h2>
     <div class="row">
       <div class="col-sm-5">
-        <p>Contact us and we'll get back to you within 24 hours</p>
+        <p>Contact us and we'll get back to you within 24 hours.</p>
         <p><span class="glyphicon glyphicon-map-marker"></span> Chicago, US</p>
         <p><span class="glyphicon glyphicon-phone"></span> +00 1515151515</p>
-        <p><span class="glyphicon glyphicon-envelope"></span> myemail@something.com</p>
+        <p><span class="glyphicon glyphicon-envelope"></span> service@tekkbrand.com</p>
       </div>
-      <div class="col-sm-7">
+      <div class="col-sm-7 slideanim">
+        {% csrf_token %}
+        <input type="hidden" value="{% url 'home:contact' %}" name="contact">
         <div class="row">
-          <div class="col-sm-4 form-group">
+          <div class="col-sm-6 form-group">
             <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
           </div>
-          <div class="col-sm-4 form-group">
-            <input class="form-control" id="tel" name="tel" placeholder="Telephone" type="email" required>
-          </div>
-          <div class="col-sm-4 form-group">
+          <div class="col-sm-6 form-group">
             <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
           </div>
         </div>
-        <textarea class="form-control" id="comments" name="comments" placeholder="Comments" rows="5"></textarea>
+        <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
         <br>
         <div class="row">
           <div class="col-sm-12 form-group">
-            <button class="btn btn-default pull-right" type="submit">Send</button>
+            <!--            <button class="btn btn-default pull-right" type="button">Send</button>-->
+            <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#myModal">Send</button>
+            <!--            <button type="button" class="btn btn-default pull-right">Send</button>-->
+
+            <div class="modal fade" id="myModal" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Thanks for your comments!</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>We are storing your comments</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
           </div>
         </div>
       </div>
     </div>
   </div>
+
 
   <footer class="container-fluid text-center">
     <a href="#myPage" title="To Top">
       <span class="glyphicon glyphicon-chevron-up"></span>
     </a>
+    <p>Copyright © 2016-Present Tekk Brand. All rights reserved. </p>
   </footer>
 
+  <script src="{% static 'home/js/index.js' %}"></script>
 
-  <script type="application/javascript" src="{% static 'home/js/index.js' %}"></script>
 </body>
+
+</html>

@@ -75,6 +75,8 @@ $.AdminLTE.options = {
     //Enable slide over content
     slide: true
   },
+  
+  
   //Box Widget Plugin. Enable this plugin
   //to allow boxes to be collapsed and/or removed
   enableBoxWidget: true,
@@ -82,11 +84,11 @@ $.AdminLTE.options = {
   boxWidgetOptions: {
     boxWidgetIcons: {
       //Collapse icon
-      collapse: 'fa-minus',
+      collapse: 'glyphicon-minus',
       //Open icon
-      open: 'fa-plus',
+      open: 'glyphicon-plus',
       //Remove icon
-      remove: 'fa-times'
+      remove: 'glyphicon-remove'
     },
     boxWidgetSelectors: {
       //Remove button selector
@@ -640,7 +642,7 @@ function _init() {
     }, options);
 
     //The overlay
-    var overlay = $('<div class="overlay"><div class="fa fa-refresh fa-spin"></div></div>');
+    var overlay = $('<div class="overlay"><div class="glyphicon glyphicon-refresh glyphicon-spin"></div></div>');
 
     return this.each(function () {
       //if a source is specified

@@ -146,3 +146,129 @@ class CategoryReviewNum(models.Model):
     class Meta:
         managed = False
         db_table = 'category_review_num'
+
+
+class BrandCategoryCount(models.Model):
+    brand_id = models.IntegerField()
+    brand_name = models.CharField(max_length=40)
+    blush = models.IntegerField(db_column='Blush')  # Field name made lowercase.
+    bronzers = models.IntegerField(db_column='Bronzers')  # Field name made lowercase.
+    concealers = models.IntegerField(db_column='Concealers')  # Field name made lowercase.
+    contour = models.IntegerField(db_column='Contour')  # Field name made lowercase.
+    eyes = models.IntegerField(db_column='Eyes')  # Field name made lowercase.
+    foundations = models.IntegerField(db_column='Foundations')  # Field name made lowercase.
+    fragrances = models.IntegerField(db_column='Fragrances')  # Field name made lowercase.
+    hair = models.IntegerField(db_column='Hair')  # Field name made lowercase.
+    highlighters = models.IntegerField(db_column='Highlighters')  # Field name made lowercase.
+    lips = models.IntegerField(db_column='Lips')  # Field name made lowercase.
+    mens = models.IntegerField(db_column='Mens')  # Field name made lowercase.
+    nails = models.IntegerField(db_column='Nails')  # Field name made lowercase.
+    other = models.IntegerField(db_column='Other')  # Field name made lowercase.
+    palettes = models.IntegerField(db_column='Palettes')  # Field name made lowercase.
+    powders = models.IntegerField(db_column='Powders')  # Field name made lowercase.
+    samples = models.IntegerField(db_column='Samples')  # Field name made lowercase.
+    self_tanners = models.IntegerField(db_column='Self Tanners')  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    skincare_body = models.IntegerField(db_column='Skincare - Body')  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    skincare_face = models.IntegerField(db_column='Skincare - Face')  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    sunscreen = models.IntegerField(db_column='Sunscreen')  # Field name made lowercase.
+    tools = models.IntegerField(db_column='Tools')  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'brand_category_count'
+
+
+class EyeColor(models.Model):
+    eye_color_id = models.IntegerField()
+    eye_color = models.CharField(max_length=16)
+
+    class Meta:
+        managed = False
+        db_table = 'eye_color'
+
+
+class HairColor(models.Model):
+    hair_color_id = models.IntegerField()
+    hair_color = models.CharField(max_length=16)
+
+    class Meta:
+        managed = False
+        db_table = 'hair_color'
+
+
+class HairTexture(models.Model):
+    hair_texture_id = models.IntegerField()
+    hair_texture = models.CharField(max_length=16)
+
+    class Meta:
+        managed = False
+        db_table = 'hair_texture'
+
+
+class HairType(models.Model):
+    hair_type_id = models.IntegerField()
+    hair_type = models.CharField(max_length=16)
+
+    class Meta:
+        managed = False
+        db_table = 'hair_type'
+
+
+class ProductUserReview(models.Model):
+    product_id = models.IntegerField()
+    brand_id = models.IntegerField()
+    major_category_id = models.IntegerField()
+    sub_category_id = models.IntegerField()
+    user_id = models.IntegerField()
+    review_date = models.DateField()
+    score = models.FloatField()
+
+    class Meta:
+        managed = False
+        db_table = 'product_user_review'
+
+
+class SkinTone(models.Model):
+    skin_tone_id = models.IntegerField()
+    skin_tone = models.CharField(max_length=16)
+
+    class Meta:
+        managed = False
+        db_table = 'skin_tone'
+
+
+class SkinType(models.Model):
+    skin_type_id = models.IntegerField()
+    skin_type = models.CharField(max_length=16)
+
+    class Meta:
+        managed = False
+        db_table = 'skin_type'
+
+
+class SkinUndertone(models.Model):
+    skin_undertone_id = models.IntegerField()
+    skin_undertone = models.CharField(max_length=16)
+
+    class Meta:
+        managed = False
+        db_table = 'skin_undertone'
+
+
+class UserInfo(models.Model):
+    user_id = models.IntegerField()
+    user_name = models.CharField(max_length=36, blank=True, null=True)
+    age = models.CharField(max_length=16)
+    skin_type_id = models.IntegerField()
+    skin_tone_id = models.IntegerField()
+    skin_undertone_id = models.IntegerField()
+    hair_type_id = models.IntegerField()
+    hair_texture_id = models.IntegerField()
+    hair_color_id = models.IntegerField()
+    eye_color_id = models.IntegerField()
+    location = models.CharField(max_length=50, blank=True, null=True)
+    date_joined = models.DateField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user_info'

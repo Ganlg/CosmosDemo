@@ -1,15 +1,19 @@
 from django.shortcuts import render
-from django.views.decorators.http import  require_POST
+from django.views.decorators.http import require_POST
 from django.http import JsonResponse, HttpResponse
 from django.core.serializers import serialize
 from django.db.models import Q, Sum
+from django.db import connection
 
 import json
 import re
 
 from tools.decorators import ajax_required
+from tools.module import dictfetchall
 from .forms import MessageForm
-from .models import ProductInfoRating, ProductInfoRatingRank, Brand, ProductNav, CategoryReviewNum
+from .models import \
+    ProductInfoRating, ProductInfoRatingRank, Brand, ProductNav, CategoryReviewNum, BrandCategoryCount \
+
 # Create your views here.
 def index(request):
     return render(request, 'dashboard/dashboard.html')
@@ -57,7 +61,7 @@ def product_rank(request):
             major_category_id=product_info.major_category_id,
             sub_category_id=product_info.sub_category_id
         ).values('product_id', 'brand_name', 'product_name', 'num').order_by('brand_name', 'product_name', 'num')
-        # print(product_rank[1])
+
 
         return JsonResponse({'result': list(product_rank)}, safe=False)
 
@@ -119,11 +123,11 @@ def product_comparison(request):
 def product_nav(request):
     option = int(request.POST.get('option'))
     value = request.POST.get('value')
-    # print(type(option))
     if option == 1:
-        # print('good')
-        brand_list = Brand.objects.all().order_by('brand_name')
-        return JsonResponse(serialize('json', brand_list), safe=False)
+        brand_list = Brand.objects.values('brand_id', 'brand_name').order_by('brand_name')
+        return JsonResponse({
+            'result': list(brand_list)
+        }, safe=False)
     elif option == 2:
         brand_id = int(value)
         category_list = ProductNav.objects.filter(brand_id=brand_id)\
@@ -141,22 +145,198 @@ def product_nav(request):
         return JsonResponse({'result': list(product_list)}, safe=False)
     return JsonResponse([], safe=False)
 
+@ajax_required
+@require_POST
+def brand_popularity_category(request):
+    product_id = request.POST.get('product_id')
+    product_info = ProductInfoRating.objects.get(product_id=product_id)
+
+    major_category_name = re.sub(r'[\s-]', '_', product_info.major_category_name.lower())
+    major_category_name = re.sub(r'_+', '_', major_category_name)
+    # print(major_category_name)
+    result = BrandCategoryCount.objects.values('brand_name', major_category_name)
+    return JsonResponse({
+        'major_category_name': product_info.major_category_name,
+        'key': major_category_name,
+        'brand_dist': list(result)
+    }, safe=False)
 
 
-def fuzzyfinder(user_input, collection, name):
-    suggestions = []
-    pattern = '.*?'.join(user_input)  # Converts 'djm' to 'd.*?j.*?m'
-    regex = re.compile(pattern)  # Compiles a regex.
-    for item in collection:
-        match = regex.search(item[name])  # Checks if the current item matches the regex.
-        if match:
-            suggestions.append((len(match.group()), match.start(), item[name]))
-    result = []
-    count = 0
-    for _, _, x in sorted(suggestions):
-        if count < 5:
-            result.append(x)
-        else:
-            break
-        count += 1
-    return result
+@ajax_required
+@require_POST
+def competitor_brand(request):
+    product_id = request.POST.get('product_id')
+
+    if not product_id.isdigit():
+        return JsonResponse([], safe=False)
+
+    cursor = connection.cursor()
+    sql = '''
+        select
+        b.brand_name,
+        a.num_review
+        from (select 
+        t2.brand_id,
+        count(*) as num_review
+        from product_user_review t1
+        inner join product_user_review t2
+        on t1.product_id = {}
+        and t1.major_category_id = t2.major_category_id
+        and t1.user_id = t2.user_id
+        group by t2.brand_id
+        order by num_review desc
+        limit 10
+        ) a
+        left join brand b 
+        on a.brand_id = b.brand_id
+        order by a.num_review
+    '''.format(product_id)
+
+    cursor.execute(sql)
+    result = dictfetchall(cursor)
+    # brand_list = Brand.objects.all()
+    # brand_dict = {}
+    # for brand in brand_list:
+    #     brand_dict[brand.brand_id] = brand.brand_name
+    #
+    # result = []
+    # for item in result_temp:
+    #     result.append({
+    #         'brand_name': brand_dict[item['brand_id']],
+    #         'num_review': item['num_review']
+    #     })
+    return JsonResponse(result, safe=False)
+
+@ajax_required
+@require_POST
+def user_skin_dist(request):
+    product_id = request.POST.get('product_id')
+    if not product_id.isdigit():
+        return JsonResponse([], safe=False)
+    cursor = connection.cursor()
+    sql = '''
+        select
+        t3.skin_type,
+        avg(t1.score) as score,
+        count(*) as num
+        from product_user_review t1
+        left join user_info t2
+        on t1.user_id = t2.user_id
+        left join skin_type t3
+        on t2.skin_type_id =  t3.skin_type_id
+        where product_id = {}
+        group by t3.skin_type
+        order by num 
+    '''.format(product_id)
+
+    cursor.execute(sql)
+    result = dictfetchall(cursor)
+    # brand_list = Brand.objects.all()
+    # brand_dict = {}
+    # for brand in brand_list:
+    #     brand_dict[brand.brand_id] = brand.brand_name
+    #
+    # result = []
+    # for item in result_temp:
+    #     result.append({
+    #         'brand_name': brand_dict[item['brand_id']],
+    #         'num_review': item['num_review']
+    #     })
+    return JsonResponse(result, safe=False)
+
+@ajax_required
+@require_POST
+def user_age_dist(request):
+    product_id = request.POST.get('product_id')
+    if not product_id.isdigit():
+        return JsonResponse([], safe=False)
+    cursor = connection.cursor()
+    sql = '''
+        select 
+        t2.age,
+        count(*) as num
+        from product_user_review t1
+        inner join user_info t2
+        on t1.product_id = {}
+        and t1.user_id = t2.user_id
+        group by t2.age
+        order by t2.age
+    '''.format(product_id)
+
+    cursor.execute(sql)
+    result = dictfetchall(cursor)
+    return JsonResponse(result, safe=False)
+
+@ajax_required
+@require_POST
+def user_country_dist(request):
+    product_id = request.POST.get('product_id')
+    if not product_id.isdigit():
+        return JsonResponse([], safe=False)
+    cursor = connection.cursor()
+    sql = '''
+        select 
+        case when lower(t2.location) like '%united states%' then 'United States'
+        else t2.location end as clean_location,
+        count(*) as num
+        from product_user_review t1
+        inner join user_info t2
+        on t1.product_id = {}
+        and t1.user_id = t2.user_id
+        group by clean_location
+        order by num
+    '''.format(product_id)
+
+    cursor.execute(sql)
+    result = dictfetchall(cursor)
+    return JsonResponse(result, safe=False)
+
+@ajax_required
+@require_POST
+def user_skin_type_dist(request):
+    product_id = request.POST.get('product_id')
+    if not product_id.isdigit():
+        return JsonResponse([], safe=False)
+    cursor = connection.cursor()
+    sql = '''
+        select 
+        t3.skin_type,
+        count(*) as num
+        from product_user_review t1
+        inner join user_info t2
+        on t1.product_id = 102
+        and t1.user_id = t2.user_id
+        inner join skin_type t3
+        on t2.skin_type_id = t3.skin_type_id
+        group by skin_type
+        order by num
+    '''.format(product_id)
+
+    cursor.execute(sql)
+    result = dictfetchall(cursor)
+    return JsonResponse(result, safe=False)
+
+@ajax_required
+@require_POST
+def user_skin_tone_dist(request):
+    product_id = request.POST.get('product_id')
+    if not product_id.isdigit():
+        return JsonResponse([], safe=False)
+    cursor = connection.cursor()
+    sql = '''
+        select 
+        t3.skin_tone,
+        count(*) as num
+        from product_user_review t1
+        inner join user_info t2
+        on t1.product_id = 102
+        and t1.user_id = t2.user_id
+        inner join skin_tone t3
+        on t2.skin_tone_id = t3.skin_tone_id
+        group by skin_tone
+        order by num
+    '''.format(product_id)
+
+    cursor.execute(sql)
+    result = dictfetchall(cursor)
+    return JsonResponse(result, safe=False)

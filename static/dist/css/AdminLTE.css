@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
+/*@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);*/
 /*!
  *   AdminLTE v2.3.12
  *   Author: Almsaeed Studio
@@ -19,7 +19,8 @@ body {
   height: 100%;
 }
 body {
-  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  /*font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;*/
+  font-family: "Times New Roman", Times, sans-serif;
   font-weight: 400;
   overflow-x: hidden;
   overflow-y: auto;
@@ -162,7 +163,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Times New Roman", Times, sans-serif;
 }
 /* General Links */
 a {
@@ -253,11 +254,11 @@ a:focus {
   float: left;
   background-color: transparent;
   background-image: none;
-  padding: 15px 15px;
-  font-family: fontAwesome;
+  padding: 12px 12px;
+  font-family: "Times New Roman", Times, sans-serif;
 }
 .main-header .sidebar-toggle:before {
-  content: "\f0c9";
+/*  content: "\f0c9";*/
 }
 .main-header .sidebar-toggle:hover {
   color: #fff;
@@ -294,7 +295,7 @@ a:focus {
   line-height: 50px;
   text-align: center;
   width: 230px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Times New Roman", Times, sans-serif;
   padding: 0 15px;
   font-weight: 300;
   overflow: hidden;
@@ -2063,9 +2064,11 @@ a:focus {
   height: 60px;
   width: 60px;
   text-align: center;
-  font-size: 45px;
-  line-height: 60px;
+  font-size: 50px;
+  line-height: 50px;
   background: rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  
 }
 .info-box-icon > img {
   max-width: 100%;

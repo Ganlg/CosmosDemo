@@ -142,3 +142,10 @@ if DEBUG:
     ]
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+EMAIL_HOST = 'smtp.exmail.qq.com'
+EMAIL_HOST_USER = 'service@tekkbrand.com'
+EMAIL_HOST_PASSWORD = 'Tekk2017'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+
